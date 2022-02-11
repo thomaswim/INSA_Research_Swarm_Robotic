@@ -1,8 +1,11 @@
 
 PIR project
 ============
-ici le repo du projet PIR. Il y reprend tout l'environement de simulation de COUCOU CLEM
+ici le repo du projet PIR. Il y reprend tout l'environement de simulation du robotarium.
+On y retrouve les codes examples aisi que nos propres codes dans "rps/code_perso"
 
+
+Ci dessous la doc du simulateur 
 
 Introduction
 ============
