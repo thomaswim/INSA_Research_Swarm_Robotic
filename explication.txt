@@ -1,0 +1,28 @@
+0 -  LA base 
+    - Robotarium module
+        Il y a la classe Robotarium dans rps.robotarium qui est le moteur meme du simulateur 
+
+1 - Liste des utilites 
+
+    - controller 
+        Permet de créer des controlleur pour les robots :
+
+        -create_si_position_controller(x_velocity_gain=1, y_velocity_gain=1, velocity_magnitude_limit=0.15)
+        => 
+            X et Y velocity_gain : le ain qui impacte la vitesse du robot
+            magnitude_limit : La magnitude maximum de vitesse
+            Valeur par default 
+        -def si_position_controller(xi, positions):
+            Xi : un tableau de 2xN des etats chaque robot 
+            Position : 2xN tableau de points que chaque robot doit atteindre 
+        -def position_uni_clf_controller(states, positions):
+            states: 3xN numpy array (of unicycle states, [x;y;theta])
+            poses: 3xN numpy array (of desired positons, [x_goal;y_goal])
+            Retourne un 2xN array des controles d'entrée
+            
+2 - Barrier certificates
+    C'est le rayon de sécurité de chaque robot 
+    On le crée avec : 
+        si_barrier_cert = create_single_integrator_barrier_certificate()
+
+
