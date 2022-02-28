@@ -1,6 +1,6 @@
 
 # PIR project
-============
+
 Notre projet d'initiation a la recherche consiste à étudier le comportement des robots en essaim au travers plusieurs algorithmes. On y a déposé nos propres codes dans "rps/code_perso"
 
 ## Tutoriel Simulateur
