@@ -12,7 +12,7 @@ import time
 
 N = 1 #1 ROBOT
 initial_conditions = generate_initial_conditions(N) #COND INITIAL ALEATOIRE
-r = robotarium.Robotarium(number_of_robots=N, show_figure=True, initial_conditions=initial_conditions, sim_in_real_time=False) 
+r = robotarium.Robotarium(number_of_robots=N, show_figure=True, initial_conditions=initial_conditions, sim_in_real_time=True) 
 
 
 

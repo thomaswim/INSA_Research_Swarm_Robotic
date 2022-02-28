@@ -1,13 +1,48 @@
 
-PIR project
+# PIR project
 ============
-ici le repo du projet PIR. Il y reprend tout l'environement de simulation du robotarium.
-On y retrouve les codes examples aisi que nos propres codes dans "rps/code_perso"
+Notre projet d'initiation a la recherche consiste à étudier le comportement des robots en essaim au travers plusieurs algorithmes. On y a déposé nos propres codes dans "rps/code_perso"
+
+## Tutoriel Simulateur
+Voici un explication syntetiques des differensnt modules utilisé dans le simulateur :
+
+### La base 
+#### Robotarium module
+Il y a la classe Robotarium dans rps.robotarium qui est le moteur meme du simulateur 
+
+### Liste des utilites 
+
+- controller 
+  Permet de créer des controlleur pour les robots :
+  - create_si_position_controller(x_velocity_gain=1, y_velocity_gain=1, velocity_magnitude_limit=0.15)=>
+    - X et Y velocity_gain : le ain qui impacte la vitesse du robot
+    - magnitude_limit : La magnitude maximum de vitesse
+    - Valeur par default 
+  - def si_position_controller(xi, positions):
+    - Xi : un tableau de 2xN des etats chaque robot 
+    - Position : 2xN tableau de points que chaque robot doit atteindre 
+    - def position_uni_clf_controller(states, positions):
+      - states: 3xN numpy array (of unicycle states, [x;y;theta])
+      - poses: 3xN numpy array (of desired positons, [x_goal;y_goal])
+      - Retourne un 2xN array des controles d'entrée
+            
+### Barrier certificates
+- C'est le rayon de sécurité de chaque robot 
+On le crée avec : 
+si_barrier_cert = create_single_integrator_barrier_certificate()
 
 
-Ci dessous la doc du simulateur 
 
-Introduction
+
+
+
+
+
+
+
+
+
+## doc offciel du simulateur 
 ============
 
 This is a Python simulator for Robotarium! The Robotarium is a project at Georgia Institute of Technology allowing public, remote access to a state-of-the-art multi-robot testbed.
