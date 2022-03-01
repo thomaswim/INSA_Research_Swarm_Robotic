@@ -1,11 +1,7 @@
 
 # PIR project
 
-<<<<<<< HEAD
-Notre projet d'initiation a la recherche consiste à étudier le comportement des robots en essaim au travers plusieurs algorithmes. On y a déposé nos propres codes dans "rps/code_perso" z
-=======
 Notre projet d'initiation a la recherche consiste à étudier le comportement des robots en essaim au travers plusieurs algorithmes. On y a déposé nos propres codes dans "rps/code_perso" 
->>>>>>> main
 
 ## Tutoriel Simulateur
 Voici un explication syntetiques des differensnt modules utilisé dans le simulateur :
@@ -35,8 +31,12 @@ Il y a la classe Robotarium dans rps.robotarium qui est le moteur meme du simula
 On le crée avec : 
 si_barrier_cert = create_single_integrator_barrier_certificate()
 
-
-
+### Graphe
+- topological_neighbors (L,agent)
+  - L: NxN numpy array (representing the graph Laplacian)
+  - agent : integer (robot de 0 à N-1)
+  - return : 1xM numpy arraay (avec les M voisins)
+  - une fonctions qui renvoie les voisins les plus proches
 
 
 

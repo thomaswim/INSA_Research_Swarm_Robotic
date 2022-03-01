@@ -10,18 +10,16 @@ import time
 
 ##ON INTITIALISE LE SIMULATEUR ROBOTARIUM #############
 
-N = 1 #1 ROBOT
+N = 5 #1 ROBOT
+
 initial_conditions = generate_initial_conditions(N) #COND INITIAL ALEATOIRE
 r = robotarium.Robotarium(number_of_robots=N, show_figure=True, initial_conditions=initial_conditions, sim_in_real_time=True) 
-
-
-
 
  ##ON DEFINIT LES OBJECTIFS ##
 error_margin = 0.02 #mARGE D'ERREUR POUR LA POSITION FINALE
 
 # Definie la postion finale des robots (objectif de position)
-goal_points = np.array(np.mat('0 ; 0 ; 0'))
+goal_points = np.array(np.mat('0 0 0 0 0; 0 0 0 0 0; 0 0 0 0 0'))
 
 
 ##ON APPELLE LES OUTILS NECESSAIRES ##
