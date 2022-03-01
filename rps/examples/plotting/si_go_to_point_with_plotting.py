@@ -49,7 +49,7 @@ goal_points_text = [r.axes.text(goal_points[0,ii], goal_points[1,ii], goal_capti
 for ii in range(goal_points.shape[1])]
 goal_markers = [r.axes.scatter(goal_points[0,ii], goal_points[1,ii], s=marker_size_goal, marker='s', facecolors='none',edgecolors=CM[ii,:],linewidth=line_width,zorder=-2)
 for ii in range(goal_points.shape[1])]
-robot_markers = [r.axes.scatter(x[0,ii], x[1,ii], s=marker_size_robot, marker='o', facecolors='none',edgecolors=CM[ii,:],linewidth=line_width) 
+robot_markers = [r.axes.scatter(x[0,ii], x[1,ii], s=marker_size_robot, marker='s', facecolors='none',edgecolors=CM[ii,:],linewidth=line_width) 
 for ii in range(goal_points.shape[1])]
 
 
