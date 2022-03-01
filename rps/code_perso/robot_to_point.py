@@ -16,8 +16,8 @@ initial_conditions = generate_initial_conditions(N) #COND INITIAL ALEATOIRE
 r = robotarium.Robotarium(number_of_robots=N, show_figure=True, initial_conditions=initial_conditions, sim_in_real_time=True) 
 
  ##ON DEFINIT LES OBJECTIFS ##
-error_margin = 0.02 #mARGE D'ERREUR POUR LA POSITION FINALE
-
+error_margin = 0.01 #mARGE D'ERREUR POUR LA POSITION FINALE
+iterations = 500
 # Definie la postion finale des robots (objectif de position)
 goal_points = np.array(np.mat('0 0 0 0 0; 0 0 0 0 0; 0 0 0 0 0'))
 
@@ -47,7 +47,8 @@ r.step()
 
 
 ##ON BOUCLE LA SIMUATION##
-while (np.size(at_pose(np.vstack((x_si,x[2,:])), goal_points, rotation_error=100)) != N):
+#while (np.size(at_pose(np.vstack((x_si,x[2,:])), goal_points, rotation_error=100)) != N):
+for k in range(iterations):
 
     #on recupere les états
     x = r.get_poses()
