@@ -8,11 +8,41 @@ import numpy as np
 from numpy import linalg as LA
 import time
 
-##ON INTITIALISE LE SIMULATEUR ROBOTARIUM #############
+#----------------------------------------------------------
+# FONCTIONS 
+#----------------------------------------------------------
 
-N = 1 #1 ROBOT
+#PAS FONCTIONNEL POUR LE MOMENT 
+def avance(goal_point) :
+
+    #on recupere les états
+    x = r.get_poses()
+    x_si = uni_to_si_states(x)
+
+    # Create single-integrator control inputs
+    dxi = single_integrator_position_controller(x_si ,goal_point[:2][:])
+
+    # Create safe control inputs (i.e., no collisions)
+    dxi = si_barrier_cert(dxi, x_si)
+
+    # Transform single integrator velocity commands to unicycle
+    dxu = si_to_uni_dyn(dxi, x)
+    # Set the velocities by mapping the single-integrator inputs to unciycle inputs
+    r.set_velocities(np.arange(N), dxu)
+    r.step()
+#----------------------------------------------------------
+
+
+
+
+
+#----------------------------------------------------------
+##ON INTITIALISE LE SIMULATEUR ROBOTARIUM #############
+#----------------------------------------------------------
+
+N = 2 #NB ROBOT
 initial_conditions = generate_initial_conditions(N) #COND INITIAL ALEATOIRE
-r = robotarium.Robotarium(number_of_robots=N, show_figure=True, initial_conditions=initial_conditions, sim_in_real_time=True) 
+r = robotarium.Robotarium(number_of_robots=N, show_figure=True, initial_conditions=initial_conditions, sim_in_real_time=False)  
 
 
 
@@ -81,12 +111,11 @@ goal_markers2 = [r.axes.scatter(goal_points2[0,ii], goal_points2[1,ii], s=marker
 for ii in range(goal_points2.shape[1])]
 #----------------------------------------------------------
 
-
-
-
+#----------------------------------------------------------
+# Definition de la zone d'apparition du robot 
 robot_markers = [r.axes.scatter(x[0,ii], x[1,ii], s=marker_size_robot, marker='o', facecolors='none',edgecolors=CM[ii,:],linewidth=line_width) 
 for ii in range(goal_points.shape[1])]
-#ESSAYER DE COMPRENDRE : but, mettre plusieurs zone 'but' 
+#----------------------------------------------------------
 
 #avance la simu
 r.step()
@@ -96,22 +125,28 @@ r.step()
 
 ##ON BOUCLE LA SIMUATION##
 while (np.size(at_pose(np.vstack((x_si,x[2,:])), goal_points, rotation_error=100)) != N):
+        
+        #on recupere les états
+        x = r.get_poses()
+        x_si = uni_to_si_states(x)
 
-    #on recupere les états
-    x = r.get_poses()
-    x_si = uni_to_si_states(x)
+        # Create single-integrator control inputs
+        dxi = single_integrator_position_controller(x_si ,goal_points[:2][:])
 
-    # Create single-integrator control inputs
-    dxi = single_integrator_position_controller(x_si ,goal_points[:2][:])
+        # Create safe control inputs (i.e., no collisions)
+        dxi = si_barrier_cert(dxi, x_si)
 
-    # Create safe control inputs (i.e., no collisions)
-    dxi = si_barrier_cert(dxi, x_si)
+        # Transform single integrator velocity commands to unicycle
+        dxu = si_to_uni_dyn(dxi, x)
+        # Set the velocities by mapping the single-integrator inputs to unciycle inputs
+        r.set_velocities(np.arange(N), dxu)
+        r.step()
 
-    # Transform single integrator velocity commands to unicycle
-    dxu = si_to_uni_dyn(dxi, x)
-    # Set the velocities by mapping the single-integrator inputs to unciycle inputs
-    r.set_velocities(np.arange(N), dxu)
-    r.step()
+
+print("goal 1 atteint !!")
+
+#----------------------------------------------------------
+# Atteinte du 2e point 
 
 while (np.size(at_pose(np.vstack((x_si,x[2,:])), goal_points2, rotation_error=100)) != N):
 
@@ -130,7 +165,7 @@ while (np.size(at_pose(np.vstack((x_si,x[2,:])), goal_points2, rotation_error=10
     # Set the velocities by mapping the single-integrator inputs to unciycle inputs
     r.set_velocities(np.arange(N), dxu)
     r.step()
-
+#----------------------------------------------------------
 
 
 r.call_at_scripts_end()
