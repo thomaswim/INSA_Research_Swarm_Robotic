@@ -40,7 +40,7 @@ def avance(goal_point) :
 ##ON INTITIALISE LE SIMULATEUR ROBOTARIUM #############
 #----------------------------------------------------------
 
-N = 2 #NB ROBOT
+N = 1 #NB ROBOT
 initial_conditions = generate_initial_conditions(N) #COND INITIAL ALEATOIRE
 r = robotarium.Robotarium(number_of_robots=N, show_figure=True, initial_conditions=initial_conditions, sim_in_real_time=False)  
 
@@ -130,6 +130,7 @@ while (np.size(at_pose(np.vstack((x_si,x[2,:])), goal_points, rotation_error=100
         x = r.get_poses()
         x_si = uni_to_si_states(x)
 
+
         # Create single-integrator control inputs
         dxi = single_integrator_position_controller(x_si ,goal_points[:2][:])
 
@@ -167,5 +168,6 @@ while (np.size(at_pose(np.vstack((x_si,x[2,:])), goal_points2, rotation_error=10
     r.step()
 #----------------------------------------------------------
 
+print("goal 2 atteint !!")
 
 r.call_at_scripts_end()
