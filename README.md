@@ -25,6 +25,13 @@ Il y a la classe Robotarium dans rps.robotarium qui est le moteur meme du simula
       - states: 3xN numpy array (of unicycle states, [x;y;theta])
       - poses: 3xN numpy array (of desired positons, [x_goal;y_goal])
       - Retourne un 2xN array des controles d'entrée
+
+#### Single Integrator model VS Unicycle model
+
+Unicycle model represente le model actuel du robot. Sa commande de déplacement doit etre adapté a son gabarit. Il peut s'orienter en modifiant la vitesse de chacune de ses roues :
+![Screenshot](asset/uni.png)
+Plus d'infomations sur les Single integrator et les unicyle model sur : https://www.youtube.com/watch?v=HY4pvDK28d4&list=PLezxjc7iVgzrcHytt6WL8r9qHggiFTdOt&index=3
+
             
 ### Barrier certificates
 - C'est le rayon de sécurité de chaque robot 
@@ -32,18 +39,25 @@ On le crée avec :
 si_barrier_cert = create_single_integrator_barrier_certificate()
 
 ### Graphe
+Les robots communiquent entre eux grace aux graphes Laplaciens.
+Plus d'informations sur : https://www.youtube.com/watch?v=HM7-ALl2tyM&t=3s
+On peut généere un graphe Laplacien connécté avec :
+- cycle_GL(N)
+  - Generates a graph Laplacian for a cycle graph
+- lineGL(N)
+  - Generates a graph Laplacian for a line graph
+- completeGL(N)
+  - Generates a graph Laplacian for a complete graph
+- random_connectedGL(v, e)
+  - Generates a Laplacian for a random, connected graph with v verticies and (v-1) + e edges.
+- randomGL(v, e)
+  - Generates a Laplacian for a random graph with v verticies and e edges.
+
 - topological_neighbors (L,agent)
   - L: NxN numpy array (representing the graph Laplacian)
   - agent : integer (robot de 0 à N-1)
   - return : 1xM numpy arraay (avec les M voisins)
   - une fonctions qui renvoie les voisins les plus proches
-
-
-
-
-
-
-
 
 
 ## doc offciel du simulateur 
