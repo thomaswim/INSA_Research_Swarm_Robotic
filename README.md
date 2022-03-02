@@ -29,7 +29,7 @@ Il y a la classe Robotarium dans rps.robotarium qui est le moteur meme du simula
 #### Single Integrator model VS Unicycle model
 
 Unicycle model represente le model actuel du robot. Sa commande de déplacement doit etre adapté a son gabarit. Il peut s'orienter en modifiant la vitesse de chacune de ses roues :
-![Screenshot](asset/uni.png)
+![Screenshot](assets/uni.png)
 Plus d'infomations sur les Single integrator et les unicyle model sur : https://www.youtube.com/watch?v=HY4pvDK28d4&list=PLezxjc7iVgzrcHytt6WL8r9qHggiFTdOt&index=3
 
             
