@@ -8,7 +8,7 @@ from rps.utilities.controllers import *
 import numpy as np
 
 #initialiser le robotarium
-N = 12
+N = 10
 r = robotarium.Robotarium(number_of_robots=N, show_figure=True, sim_in_real_time=True)
 
 #nombre iterations
@@ -37,7 +37,7 @@ L = cycle_GL(N)
 ####CREATION TEXT ET MARKER############
 #####################################
 
-
+"""
 # Plotting Parameters
 CM = np.random.rand(N,3) # Random Colors
 safety_radius_marker_size = determine_marker_size(r,safety_radius) # Will scale the plotted markers to be the diameter of provided argument (in meters)
@@ -52,7 +52,7 @@ follower_text = np.empty((3,0))
 
 r.step()
 
-
+"""
 
 
 
@@ -67,11 +67,12 @@ for k in range(iteration) :
     x = r.get_poses()
     x_si = uni_to_si_states(x)
     # Update Plotted Visualization
+    """
     g.set_offsets(x[:2,:].T)
     # This updates the marker sizes if the figure window size is changed. 
     # This should be removed when submitting to the Robotarium.
     g.set_sizes([determine_marker_size(r,safety_radius)])
-
+"""
     #on initialise le SI control input avec des zeros (pour pallier le probleme de memoire)
     si_velocities = np.zeros((2,N))
 
