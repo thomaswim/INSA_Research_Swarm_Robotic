@@ -171,3 +171,5 @@ while (np.size(at_pose(np.vstack((x_si,x[2,:])), goal_points2, rotation_error=10
 print("goal 2 atteint !!")
 
 r.call_at_scripts_end()
+
+#coucou
