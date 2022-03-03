@@ -30,6 +30,13 @@ Il y a la classe Robotarium dans rps.robotarium qui est le moteur meme du simula
 
 Unicycle model represente le model actuel du robot. Sa commande de déplacement doit etre adapté a son gabarit. Il peut s'orienter en modifiant la vitesse de chacune de ses roues :
 ![Screenshot](assets/uni.png)
+
+A partir d'un Single-Integrator (SI) Model, il est possible de le convertir en Unicyle(UNI) Model a l'aide de fonction donné par la bibliothèque du Robotarium.
+![Screenshot](assets/SItoUNI.png) 
+
+Ces fonctions sont : 
+
+
 Plus d'infomations sur les Single integrator et les unicyle model sur : https://www.youtube.com/watch?v=HY4pvDK28d4&list=PLezxjc7iVgzrcHytt6WL8r9qHggiFTdOt&index=3
 
             
