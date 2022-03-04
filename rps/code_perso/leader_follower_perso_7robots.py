@@ -19,7 +19,7 @@ import numpy as np
 
 # Experiment Constants
 iterations = 5000 #Run the simulation/experiment for 5000 steps (5000*0.033 ~= 2min 45sec)
-N=4 #Number of robots to use, this must stay 4 unless the Laplacian is changed.
+N=7 #Number of robots to use, this must stay 4 unless the Laplacian is changed.
 
 waypoints = np.array([[-1,-1,1,1],[0.8, -0.8, -0.8, 0.8]]) #les points parlesquelle va passer le Leader
 close_enough = 0.03 ; #a quelle distance minimum du waypoint doit etre le follower afin de valider son étape
@@ -63,7 +63,7 @@ formation_control_gain = 10
 desired_distance = 0.3
 
 #On pose les condiitons initiales des robots  
-initial_conditions = np.array([[0, 0.5, 0.3, -0.1],[0.5, 0.5, 0.2, 0],[0, 0, 0, 0]])
+initial_conditions = np.array([[0, 0.5, 0.3, -0.1, 0.2, 0.4, -0.3],[0.5, 0.5, 0.2, 0,0, 0.4,-0.4],[0, 0, 0, 0,0,0,0]])
 
 #On initialise la classe robotarium 
 r = robotarium.Robotarium(number_of_robots=N, show_figure=True, initial_conditions=initial_conditions, sim_in_real_time=True)

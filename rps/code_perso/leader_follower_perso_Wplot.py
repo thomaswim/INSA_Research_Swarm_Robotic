@@ -105,12 +105,85 @@ leader_controller = create_si_position_controller(velocity_magnitude_limit=0.1)
 	"""
 
 
+########################
+#######PLOT#############
+###########################
+
+
+
+
+
+# Plotting Parameters
+CM = np.random.rand(N,3) # Random Colors
+marker_size_goal = determine_marker_size(r,0.2)
+font_size_m = 0.1
+font_size = determine_font_size(r,font_size_m)
+line_width = 5
+
+# Create goal text and markers
+
+#Text with goal identification
+goal_caption = ['G{0}'.format(ii) for ii in range(waypoints.shape[1])]
+#Plot text for caption
+waypoint_text = [r.axes.text(waypoints[0,ii], waypoints[1,ii], goal_caption[ii], fontsize=font_size, color='k',fontweight='bold',horizontalalignment='center',verticalalignment='center',zorder=-2)
+for ii in range(waypoints.shape[1])]
+g = [r.axes.scatter(waypoints[0,ii], waypoints[1,ii], s=marker_size_goal, marker='s', facecolors='none',edgecolors=CM[ii,:],linewidth=line_width,zorder=-2)
+for ii in range(waypoints.shape[1])]
+
+# Plot Graph Connections
+x = r.get_poses() # Need robot positions to do this.
+linked_follower_index = np.empty((2,3))
+follower_text = np.empty((3,0))
+for jj in range(1,int(len(rows)/2)+1):
+	linked_follower_index[:,[jj-1]] = np.array([[rows[jj]],[cols[jj]]])
+	follower_text = np.append(follower_text,'{0}'.format(jj))
+
+line_follower = [r.axes.plot([x[0,rows[kk]], x[0,cols[kk]]],[x[1,rows[kk]], x[1,cols[kk]]],linewidth=line_width,color='b',zorder=-1)
+ for kk in range(1,N)]
+line_leader = r.axes.plot([x[0,0],x[0,1]],[x[1,0],x[1,1]],linewidth=line_width,color='r',zorder = -1)
+follower_labels = [r.axes.text(x[0,kk],x[1,kk]+0.15,follower_text[kk-1],fontsize=font_size, color='b',fontweight='bold',horizontalalignment='center',verticalalignment='center',zorder=0)
+for kk in range(1,N)]
+leader_label = r.axes.text(x[0,0],x[1,0]+0.15,"Leader",fontsize=font_size, color='r',fontweight='bold',horizontalalignment='center',verticalalignment='center',zorder=0)
+
+r.step()
+########################
+#######PLOT#############
+###########################
+
+
+
 #Boucle
 
 for t in range(iterations) : 
 	#obtenir la position 
 	x = r.get_poses()
 	xi = uni_to_si_states(x) #Conversion etat UNI en SI
+########################
+#######PLOT#############
+###########################
+
+
+		# Update Plot Handles
+	for q in range(N-1):
+		follower_labels[q].set_position([xi[0,q+1],xi[1,q+1]+0.15])
+		follower_labels[q].set_fontsize(determine_font_size(r,font_size_m))
+		line_follower[q][0].set_data([x[0,rows[q+1]], x[0,cols[q+1]]],[x[1,rows[q+1]], x[1,cols[q+1]]])
+	leader_label.set_position([xi[0,0],xi[1,0]+0.15])
+	leader_label.set_fontsize(determine_font_size(r,font_size_m))
+	line_leader[0].set_data([x[0,0],x[0,1]],[x[1,0],x[1,1]])
+
+	# This updates the marker sizes if the figure window size is changed. 
+    # This should be removed when submitting to the Robotarium.
+	for q in range(waypoints.shape[1]):
+		waypoint_text[q].set_fontsize(determine_font_size(r,font_size_m))
+		g[q].set_sizes([determine_marker_size(r,0.2)])
+
+########################
+#######PLOT#############
+###########################
+
+
+
 
 	#Algo :
 

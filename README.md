@@ -3,12 +3,15 @@
 
 Notre projet d'initiation a la recherche consiste à étudier le comportement des robots en essaim au travers plusieurs algorithmes. On y a déposé nos propres codes dans "rps/code_perso" 
 
+## Notes
+Voir "slicing" tableau python
+
 ## Tutoriel Simulateur
 Voici un explication syntetiques des differensnt modules utilisé dans le simulateur :
 
 ### La base 
 #### Robotarium module
-Il y a la classe Robotarium dans rps.robotarium qui est le moteur meme du simulateur 
+Il y a la classe Robotarium dans [rps.robotarium] qui est le moteur meme du simulateur 
 
 ### Liste des utilites 
 
@@ -47,14 +50,15 @@ si_barrier_cert = create_single_integrator_barrier_certificate()
 
 ### Graphe
 Les robots communiquent entre eux grace aux graphes Laplaciens.
+Il faut se referer et comprendre la th"orie des graphes.
 Plus d'informations sur : https://www.youtube.com/watch?v=HM7-ALl2tyM&t=3s
 On peut généere un graphe Laplacien connécté avec :
 - cycle_GL(N)
-  - Generates a graph Laplacian for a cycle graph
+  - Generates a graph Laplacian for a cycle graph (https://fr.wikipedia.org/wiki/Graphe_cycle)
 - lineGL(N)
-  - Generates a graph Laplacian for a line graph
+  - Generates a graph Laplacian for a line graph (https://fr.wikipedia.org/wiki/Line_graph)
 - completeGL(N)
-  - Generates a graph Laplacian for a complete graph
+  - Generates a graph Laplacian for a complete graph ("En théorie des graphes, un graphe complet est un graphe simple dont tous les sommets sont adjacents deux à deux, ")(https://fr.wikipedia.org/wiki/Graphe_complet)
 - random_connectedGL(v, e)
   - Generates a Laplacian for a random, connected graph with v verticies and (v-1) + e edges.
 - randomGL(v, e)
