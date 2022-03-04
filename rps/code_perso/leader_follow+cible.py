@@ -185,6 +185,7 @@ while (np.size(at_pose(np.vstack((x_si,x[2,:])), goal_points2, rotation_error=10
     r.step()
 #---------------
 
+#coucou 
 
 #Call at end of script to print debug information and for your script to run on the Robotarium server properly
 r.call_at_scripts_end()
