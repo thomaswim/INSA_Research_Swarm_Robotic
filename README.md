@@ -70,6 +70,8 @@ On peut généere un graphe Laplacien connécté avec :
   - return : 1xM numpy arraay (avec les M voisins)
   - une fonctions qui renvoie les voisins les plus proches
 
+### Complications en réel
+Pour obtenir la position des robots du robotarium, le temps de latence est d'environ 0,033 sec
 
 ## doc offciel du simulateur 
 ============
