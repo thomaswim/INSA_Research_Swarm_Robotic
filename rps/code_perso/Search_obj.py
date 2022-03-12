@@ -6,6 +6,7 @@ Réecriture
 '''
 
 #Import Robotarium Utilities
+
 from os import stat
 import random
 import rps.robotarium as robotarium
@@ -19,15 +20,16 @@ from rps.utilities.controllers import *
 import numpy as np
 
 # Experiment Constants
-iterations = 5000 #Run the simulation/experiment for 5000 steps (5000*0.033 ~= 2min 45sec)
+iterations = 3500 #Run the simulation/experiment for 5000 steps (5000*0.033 ~= 2min 45sec)
 N=4 #Number of robots to use, this must stay 4 unless the Laplacian is changed.
 
-Objectif = np.array([[-1],[0.8]])
+Objectif = np.array([[-0.5],[0.8]])
 close_enough = 0.1 ; #a quelle distance minimum du waypoint doit etre le follower afin de valider son étape
 
 ####Creation du Laplacien####
 #On cree un graphe complet => tous les sommets sont adjacent 2 a 2
-followers = -completeGL(N) #N-A car Un leader
+#followers = -completeGL(N) #N-A car Un leader
+followers = -cycle_GL(N)
 L = np.zeros((N,N)) #Matrice de zero pour pallier les eventuelles erreures memoires
 L = followers
 print(L)
@@ -52,7 +54,7 @@ desired_distance = 0.3
 initial_conditions = np.array([[0, 0.5, 0.3, -0.1],[0.5, 0.5, 0.2, 0],[0, 0, 0, 0]])
 
 #On initialise la classe robotarium 
-r = robotarium.Robotarium(number_of_robots=N, show_figure=True, initial_conditions=initial_conditions, sim_in_real_time=True)
+r = robotarium.Robotarium(number_of_robots=N, show_figure=True, initial_conditions=initial_conditions, sim_in_real_time=False)
 #SI to UNI mapping
 _,uni_to_si_states = create_si_to_uni_mapping()#SI barrieere certificat : avoid les collisions
 
@@ -93,7 +95,7 @@ for jj in range(1,int(len(rows))):
 	follower_text = np.append(follower_text,'{0}'.format(jj))
 
 line_follower = [r.axes.plot([x[0,rows[kk]], x[0,cols[kk]]],[x[1,rows[kk]], x[1,cols[kk]]],linewidth=line_width,color='b',zorder=-1)
- for kk in range(0,N)]
+for kk in range(0,N)]
 ##line_leader = r.axes.plot([x[0,0],x[0,1]],[x[1,0],x[1,1]],linewidth=line_width,color='r',zorder = -1)
 follower_labels = [r.axes.text(x[0,kk],x[1,kk]+0.15,kk,fontsize=font_size, color='b',fontweight='bold',horizontalalignment='center',verticalalignment='center',zorder=0)
 for kk in range(0,N)]
@@ -111,6 +113,7 @@ for kk in range(0,N)]
 
 waypoint_check = np.zeros(N)
 waypoint = np.zeros((2,N))
+Obj_find = 0
 
 r.step()
 for t in range(iterations):
@@ -137,7 +140,14 @@ for t in range(iterations):
 		# Zero velocities and get the topological neighbors of agent i
 		dxi[:,[i]]=np.zeros((2,1))
 		neighbors = topological_neighbors(L,i)
-		if (waypoint_check[i] == 0):
+		
+
+
+
+
+
+
+		if (waypoint_check[i] == 0) and Obj_find ==0:
 			xp = (random.random()*2)-1
 			yp = (random.random()*2)-1
 			waypoint[[0],[i]] = xp
@@ -146,14 +156,25 @@ for t in range(iterations):
 			##dxi[:,[i]] = leader_controller(x[:2,[0]], waypoint[:,[i]])
 			waypoint_check[i] = 1
 		
-		if np.linalg.norm(x[:2,[i]]-waypoint[:,[i]]) < close_enough:
+		if np.linalg.norm(x[:2,[i]]-waypoint[:,[i]]) < close_enough and Obj_find ==0:
 			print("FIND",i)
 			waypoint_check[i] = 0
 			print(waypoint)
 		
+		if np.linalg.norm(x[:2,[i]]-Objectif) < desired_distance and Obj_find ==0:
+			##print("FIND IT")
+			Obj_find = 1
+			dxi[:,[i]] = [[0],[0]]
+			for j in neighbors:
+				waypoint[:,[j]] = xi[:,[i]]
+				waypoint_check[j] = 1
+				dxi[:,[j]] += leader_controller(x[:2,[j]], waypoint[:,[j]])
+				print("voisin" , j)
 
+
+		else:
 			#Use barriers and convert single-integrator to unicycle commands
-		dxi[:,[i]] = leader_controller(x[:2,[i]], waypoint[:,[i]])
+			dxi[:,[i]] = leader_controller(x[:2,[i]], waypoint[:,[i]])
 	dxi = si_barrier_cert(dxi, x[:2,:])
 	dxu = si_to_uni_dyn(dxi,x)
 	r.set_velocities(np.arange(N),dxu)
@@ -165,4 +186,9 @@ for t in range(iterations):
 
 #Call at end of script to print debug information and for your script to run on the Robotarium server properly
 r.call_at_scripts_end()
+
+
+def SayInfo(voisin) :
+	j =topological_neighbors(L,voisin)
+	
 
