@@ -122,11 +122,8 @@ t=0
 #--------------Boucle----------------------
 
 while (t<iterations and goal_check) : 
-    #obtenir la position 
-    x = r.get_poses()
-    t=t+1
-    xi = uni_to_si_states(x) #Conversion etat UNI en SI
-
+    #obtenir la position     if t==200 : 
+        goal_check=False 
     #Algo :
 
     ###Follower###
@@ -163,8 +160,6 @@ while (t<iterations and goal_check) :
      
     #iteration 
     r.step()
-
-
 
 while (np.size(at_pose(np.vstack((x_si,x[2,:])), goal_points2, rotation_error=100)) != N):
 

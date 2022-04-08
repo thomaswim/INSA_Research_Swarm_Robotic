@@ -172,4 +172,3 @@ print("goal 2 atteint !!")
 
 r.call_at_scripts_end()
 
-#coucou

@@ -87,6 +87,9 @@ for ii in range(goal_points2.shape[1])]
 
 for t in range(iterations):
 
+    
+        
+
 	# Get the most recent pose information from the Robotarium. The time delay is
 	# approximately 0.033s
 	x = r.get_poses()
