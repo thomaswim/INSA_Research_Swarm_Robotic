@@ -1,3 +1,3 @@
-#Banc de Poisson
+# Banc de Poisson
 
-##Positions initiales
+## Positions initiales
