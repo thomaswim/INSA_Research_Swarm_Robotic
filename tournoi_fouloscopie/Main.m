@@ -14,9 +14,9 @@ addpath(genpath('utilities'));
 
 %% Set up Robotarium object
 
-N = 12;
-xi = [-0.45 -0.15 0.15 0.45 -0.45 -0.15 0.15 0.45 -0.45 -0.15 0.15 0.45];
-yi = [0.3 0.3 0.3 0.3 0 0 0 0 -0.3 -0.3 -0.3 -0.3] ;
+N = 13;
+xi = [-0.45 -0.15 0.15 0.45 -0.45 -0.15 0.15 0.45 -0.45 -0.15 0.15 0.45 0.3];
+yi = [0.3 0.3 0.3 0.3 0 0 0 0 -0.3 -0.3 -0.3 -0.3 1] ;
 ai = rand(1,N).*2*  pi - pi ;
  
 initial_conditions = [xi ; yi ; ai ] ;
@@ -32,7 +32,9 @@ ATTACK_STRENGTH = 0.01 ; % Reduction of target energy for robot attacking the ta
 
 PERCEPTION_RANGE = 0.35 ; % Perception range of the robots (for walls or neighbors)
 
-[x_target, y_target] = getTargetPosition();
+%[x_target, y_target] = getTargetPosition();
+x_target = -0.4;
+y_target=0.4;
     
 %% VARIABLES
 target_energy = 100; % Experiment ends when target energy is down to 0
