@@ -3,6 +3,15 @@
 
 Notre projet d'initiation a la recherche consiste à étudier le comportement des robots en essaim au travers plusieurs algorithmes. On y a déposé nos propres codes dans "rps/code_perso" 
 
+## Etapes 
+### Determination du nbr de robot idéal
+On fait varier le nombre de robot avec une cible fixe
+
+### Determination de l'algo idéal
+On fait varier aléatoirement la cible avec le meme nombre de robot.
+
+
+
 ## Notes
 Voir "slicing" tableau python
 
