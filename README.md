@@ -56,14 +56,12 @@ Plus d'infomations sur les single integrator et les unicyle model sur : https://
   - si_barrier_cert = create_single_integrator_barrier_certificate()
 
 ### Graphe
-Les robots communiquent entre eux grace aux graphes Laplaciens.
-Il faut se referer et comprendre la th"orie des graphes.
-Plus d'informations sur : https://www.youtube.com/watch?v=HM7-ALl2tyM&t=3s
-On peut généere un graphe Laplacien connécté avec :
-- cycle_GL(N)
-  - Generates a graph Laplacian for a cycle graph (https://fr.wikipedia.org/wiki/Graphe_cycle)
-- lineGL(N)
-  - Generates a graph Laplacian for a line graph (https://fr.wikipedia.org/wiki/Line_graph)
+Les robots communiquent entre eux grâce aux graphes Laplaciens.
+Il faut se référer et comprendre la théorie des graphes. Pour cela, il existe une série de vidéos réalisées par le robotarium qui explique l'utilisation de la théorie des graphes par les robots du Robotarium (disponible au lien suivant : https://youtu.be/XXNIvTl2HRw). La vidéo qui nous intéresse le plus est celle qui explique le flux d'information entre les robots (disponible au lien suivant : https://youtu.be/HM7-ALl2tyM).
+
+On peut générer un graphe Laplacien connecté avec :
+- cycle_GL(N) --> génère un graphe Laplacien pour un graphe cycle (définition d'un graphe cycle : https://fr.wikipedia.org/wiki/Graphe_cycle)
+- lineGL(N) --> génère un graphe Laplacien pour un line graph (définition d'un line graph : https://fr.wikipedia.org/wiki/Line_graph)
 - completeGL(N)
   - Generates a graph Laplacian for a complete graph ("En théorie des graphes, un graphe complet est un graphe simple dont tous les sommets sont adjacents deux à deux, ")(https://fr.wikipedia.org/wiki/Graphe_complet)
 - random_connectedGL(v, e)
