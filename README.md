@@ -4,11 +4,11 @@
 Notre projet d'initiation à la recherche consiste à étudier le comportement des robots en essaim à travers plusieurs algorithmes. On a déposé nos propres codes dans "rps/code_perso" 
 
 ## Etapes 
-### Determination du nombre de robots idéal
+### Détermination du nombre de robots idéal
 Dans un premier temps, on fait varier le nombre de robot avec une cible fixe.
 
-### Determination de l'algo idéal
-On fait varier aléatoirement la cible avec le même nombre de robot.
+### Détermination de l'algo idéal
+Ensuite, on fait varier aléatoirement la cible avec le même nombre de robot.
 
 
 
@@ -25,9 +25,9 @@ Il y a la classe Robotarium dans [rps.robotarium] qui est le moteur même du sim
 ### Liste des utilites 
 
 - controller 
-  Permet de créer des controlleur pour les robots :
+  Permet de créer des contrôleurs pour les robots :
   - create_si_position_controller(x_velocity_gain=1, y_velocity_gain=1, velocity_magnitude_limit=0.15)=>
-    - X et Y velocity_gain : le ain qui impacte la vitesse du robot
+    - X et Y velocity_gain : le gain qui impacte la vitesse du robot
     - magnitude_limit : La magnitude maximum de vitesse
     - Valeur par default 
   - def si_position_controller(xi, positions):
