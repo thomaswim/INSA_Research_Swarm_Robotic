@@ -62,23 +62,19 @@ Il faut se référer et comprendre la théorie des graphes. Pour cela, il existe
 On peut générer un graphe Laplacien connecté avec :
 - cycle_GL(N) --> génère un graphe Laplacien pour un graphe cycle (définition d'un graphe cycle : https://fr.wikipedia.org/wiki/Graphe_cycle)
 - lineGL(N) --> génère un graphe Laplacien pour un line graph (définition d'un line graph : https://fr.wikipedia.org/wiki/Line_graph)
-- completeGL(N)
-  - Generates a graph Laplacian for a complete graph ("En théorie des graphes, un graphe complet est un graphe simple dont tous les sommets sont adjacents deux à deux, ")(https://fr.wikipedia.org/wiki/Graphe_complet)
-- random_connectedGL(v, e)
-  - Generates a Laplacian for a random, connected graph with v verticies and (v-1) + e edges.
-- randomGL(v, e)
-  - Generates a Laplacian for a random graph with v verticies and e edges.
+- completeGL(N) --> génère un graphe Laplacien pour un graphe complet ("En théorie des graphes, un graphe complet est un graphe simple dont tous les sommets sont adjacents deux à deux" voir https://fr.wikipedia.org/wiki/Graphe_complet)
+- random_connectedGL(v, e) --> génère un graphe Laplacien pour un graphe connecté aléatoire composé de v sommets et de (v-1)+e bords.
+- randomGL(v, e) --> génère un graphe Laplacien pour un graphe aléatoire composé de v sommets et de e bords.
 
-- topological_neighbors (L,agent)
+- topological_neighbors (L,agent) --> renvoie les voisins les plus proches
   - L: NxN numpy array (representing the graph Laplacian)
   - agent : integer (robot de 0 à N-1)
   - return : 1xM numpy arraay (avec les M voisins)
-  - une fonctions qui renvoie les voisins les plus proches
 
 ### Complications en réel
 Pour obtenir la position des robots du robotarium, le temps de latence est d'environ 0,033 sec
 
-## doc offciel du simulateur 
+## Document officiel du simulateur 
 ============
 
 This is a Python simulator for Robotarium! The Robotarium is a project at Georgia Institute of Technology allowing public, remote access to a state-of-the-art multi-robot testbed.
