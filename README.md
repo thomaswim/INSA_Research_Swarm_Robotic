@@ -24,8 +24,7 @@ Il y a la classe Robotarium dans [rps.robotarium] qui est le moteur même du sim
 
 ### Liste des utilites 
 
-- controller 
-  Permet de créer des contrôleurs pour les robots :
+- controller --> ermet de créer des contrôleurs pour les robots :
   - create_si_position_controller(x_velocity_gain=1, y_velocity_gain=1, velocity_magnitude_limit=0.15)=>
     - X et Y velocity_gain : le gain qui impacte la vitesse du robot
     - magnitude_limit : La magnitude maximum de vitesse
