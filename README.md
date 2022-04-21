@@ -69,13 +69,14 @@ On peut générer un graphe Laplacien connecté avec :
 - topological_neighbors (L,agent) --> renvoie les voisins les plus proches
   - L: NxN numpy array (representing the graph Laplacian)
   - agent : integer (robot de 0 à N-1)
-  - return : 1xM numpy arraay (avec les M voisins)
+  - return : 1xM numpy array (avec les M voisins)
 
 ### Complications en réel
 Pour obtenir la position des robots du robotarium, le temps de latence est d'environ 0,033 sec
 
 ## Document officiel du simulateur 
-============
+#### Ce document explique comment installer et utiliser le simulateur sur Python et Matlab
+=================================
 
 This is a Python simulator for Robotarium! The Robotarium is a project at Georgia Institute of Technology allowing public, remote access to a state-of-the-art multi-robot testbed.
 
