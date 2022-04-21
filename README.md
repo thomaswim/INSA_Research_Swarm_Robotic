@@ -1,14 +1,14 @@
 
 # PIR project
 
-Notre projet d'initiation a la recherche consiste à étudier le comportement des robots en essaim au travers plusieurs algorithmes. On y a déposé nos propres codes dans "rps/code_perso" 
+Notre projet d'initiation à la recherche consiste à étudier le comportement des robots en essaim à travers plusieurs algorithmes. On a déposé nos propres codes dans "rps/code_perso" 
 
 ## Etapes 
-### Determination du nbr de robot idéal
-On fait varier le nombre de robot avec une cible fixe
+### Détermination du nombre de robots idéal
+Dans un premier temps, on fait varier le nombre de robot avec une cible fixe.
 
-### Determination de l'algo idéal
-On fait varier aléatoirement la cible avec le meme nombre de robot.
+### Détermination de l'algo idéal
+Ensuite, on fait varier aléatoirement la cible avec le même nombre de robot.
 
 
 
@@ -16,74 +16,67 @@ On fait varier aléatoirement la cible avec le meme nombre de robot.
 Voir "slicing" tableau python
 
 ## Tutoriel Simulateur
-Voici un explication syntetiques des differensnt modules utilisé dans le simulateur :
+Voici un explication synthétique des différents modules utilisés dans le simulateur :
 
 ### La base 
 #### Robotarium module
-Il y a la classe Robotarium dans [rps.robotarium] qui est le moteur meme du simulateur 
+Il y a la classe Robotarium dans [rps.robotarium] qui est le moteur même du simulateur 
 
 ### Liste des utilites 
 
-- controller 
-  Permet de créer des controlleur pour les robots :
-  - create_si_position_controller(x_velocity_gain=1, y_velocity_gain=1, velocity_magnitude_limit=0.15)=>
-    - X et Y velocity_gain : le ain qui impacte la vitesse du robot
+- controller --> permet de créer des contrôleurs pour les robots :
+  - create_si_position_controller(x_velocity_gain=1, y_velocity_gain=1, velocity_magnitude_limit=0.15)
+    - X et Y velocity_gain : le gain qui impacte la vitesse du robot
     - magnitude_limit : La magnitude maximum de vitesse
     - Valeur par default 
-  - def si_position_controller(xi, positions):
-    - Xi : un tableau de 2xN des etats chaque robot 
-    - Position : 2xN tableau de points que chaque robot doit atteindre 
-    - def position_uni_clf_controller(states, positions):
-      - states: 3xN numpy array (of unicycle states, [x;y;theta])
-      - poses: 3xN numpy array (of desired positons, [x_goal;y_goal])
-      - Retourne un 2xN array des controles d'entrée
+  - si_position_controller(xi, positions):
+    - xi : un tableau de 2xN des états de chaque robot 
+    - positions : 2xN tableau de points que chaque robot doit atteindre 
+  - position_uni_clf_controller(states, positions):
+    - states: 3xN numpy array (of unicycle states, [x;y;theta])
+    - posistions: 3xN numpy array (of desired positons, [x_goal;y_goal])
+    - Retourne un 2xN array des controles d'entrée
 
 #### Single Integrator model VS Unicycle model
 
-Unicycle model represente le model actuel du robot. Sa commande de déplacement doit etre adapté a son gabarit. Il peut s'orienter en modifiant la vitesse de chacune de ses roues :
+Le modèle actuel du robot est représenté par l'unicycle model présenté ci-dessous. Sa commande de déplacement doit être adaptée a son gabarit. Il peut s'orienter en modifiant la vitesse de chacune de ses roues :
 ![Screenshot](assets/uni.png)
 
-A partir d'un Single-Integrator (SI) Model, il est possible de le convertir en Unicyle(UNI) Model a l'aide de fonction donné par la bibliothèque du Robotarium.
+A partir d'un Single-Integrator (SI) Model, il est possible de le convertir en Unicyle(UNI) Model à l'aide de fonctions donnés par la bibliothèque du Robotarium.
 ![Screenshot](assets/SItoUNI.png) 
 
 Ces fonctions sont : 
 
 
-Plus d'infomations sur les Single integrator et les unicyle model sur : https://www.youtube.com/watch?v=HY4pvDK28d4&list=PLezxjc7iVgzrcHytt6WL8r9qHggiFTdOt&index=3
+Plus d'infomations sur les single integrator et les unicyle model sur : https://www.youtube.com/watch?v=HY4pvDK28d4&list=PLezxjc7iVgzrcHytt6WL8r9qHggiFTdOt&index=3
 
             
 ### Barrier certificates
-- C'est le rayon de sécurité de chaque robot 
-On le crée avec : 
-si_barrier_cert = create_single_integrator_barrier_certificate()
+- C'est le rayon de sécurité de chaque robot, on le crée avec : 
+  - si_barrier_cert = create_single_integrator_barrier_certificate()
 
 ### Graphe
-Les robots communiquent entre eux grace aux graphes Laplaciens.
-Il faut se referer et comprendre la th"orie des graphes.
-Plus d'informations sur : https://www.youtube.com/watch?v=HM7-ALl2tyM&t=3s
-On peut généere un graphe Laplacien connécté avec :
-- cycle_GL(N)
-  - Generates a graph Laplacian for a cycle graph (https://fr.wikipedia.org/wiki/Graphe_cycle)
-- lineGL(N)
-  - Generates a graph Laplacian for a line graph (https://fr.wikipedia.org/wiki/Line_graph)
-- completeGL(N)
-  - Generates a graph Laplacian for a complete graph ("En théorie des graphes, un graphe complet est un graphe simple dont tous les sommets sont adjacents deux à deux, ")(https://fr.wikipedia.org/wiki/Graphe_complet)
-- random_connectedGL(v, e)
-  - Generates a Laplacian for a random, connected graph with v verticies and (v-1) + e edges.
-- randomGL(v, e)
-  - Generates a Laplacian for a random graph with v verticies and e edges.
+Les robots communiquent entre eux grâce aux graphes Laplaciens.
+Il faut se référer et comprendre la théorie des graphes. Pour cela, il existe une série de vidéos réalisées par le robotarium qui explique l'utilisation de la théorie des graphes par les robots du Robotarium (disponible au lien suivant : https://youtu.be/XXNIvTl2HRw). La vidéo qui nous intéresse le plus est celle qui explique le flux d'information entre les robots (disponible au lien suivant : https://youtu.be/HM7-ALl2tyM).
 
-- topological_neighbors (L,agent)
+On peut générer un graphe Laplacien connecté avec :
+- cycle_GL(N) --> génère un graphe Laplacien pour un graphe cycle (définition d'un graphe cycle : https://fr.wikipedia.org/wiki/Graphe_cycle)
+- lineGL(N) --> génère un graphe Laplacien pour un line graph (définition d'un line graph : https://fr.wikipedia.org/wiki/Line_graph)
+- completeGL(N) --> génère un graphe Laplacien pour un graphe complet ("En théorie des graphes, un graphe complet est un graphe simple dont tous les sommets sont adjacents deux à deux" voir https://fr.wikipedia.org/wiki/Graphe_complet)
+- random_connectedGL(v, e) --> génère un graphe Laplacien pour un graphe connecté aléatoire composé de v sommets et de (v-1)+e bords.
+- randomGL(v, e) --> génère un graphe Laplacien pour un graphe aléatoire composé de v sommets et de e bords.
+
+- topological_neighbors (L,agent) --> renvoie les voisins les plus proches
   - L: NxN numpy array (representing the graph Laplacian)
   - agent : integer (robot de 0 à N-1)
-  - return : 1xM numpy arraay (avec les M voisins)
-  - une fonctions qui renvoie les voisins les plus proches
+  - return : 1xM numpy array (avec les M voisins)
 
 ### Complications en réel
 Pour obtenir la position des robots du robotarium, le temps de latence est d'environ 0,033 sec
 
-## doc offciel du simulateur 
-============
+## Document officiel du simulateur 
+#### Ce document explique comment installer et utiliser le simulateur sur Python et Matlab
+=================================
 
 This is a Python simulator for Robotarium! The Robotarium is a project at Georgia Institute of Technology allowing public, remote access to a state-of-the-art multi-robot testbed.
 
