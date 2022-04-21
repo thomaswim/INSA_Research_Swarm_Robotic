@@ -24,37 +24,36 @@ Il y a la classe Robotarium dans [rps.robotarium] qui est le moteur même du sim
 
 ### Liste des utilites 
 
-- controller --> ermet de créer des contrôleurs pour les robots :
-  - create_si_position_controller(x_velocity_gain=1, y_velocity_gain=1, velocity_magnitude_limit=0.15)=>
+- controller --> permet de créer des contrôleurs pour les robots :
+  - create_si_position_controller(x_velocity_gain=1, y_velocity_gain=1, velocity_magnitude_limit=0.15)
     - X et Y velocity_gain : le gain qui impacte la vitesse du robot
     - magnitude_limit : La magnitude maximum de vitesse
     - Valeur par default 
-  - def si_position_controller(xi, positions):
-    - Xi : un tableau de 2xN des etats chaque robot 
-    - Position : 2xN tableau de points que chaque robot doit atteindre 
-    - def position_uni_clf_controller(states, positions):
-      - states: 3xN numpy array (of unicycle states, [x;y;theta])
-      - poses: 3xN numpy array (of desired positons, [x_goal;y_goal])
-      - Retourne un 2xN array des controles d'entrée
+  - si_position_controller(xi, positions):
+    - xi : un tableau de 2xN des états de chaque robot 
+    - positions : 2xN tableau de points que chaque robot doit atteindre 
+  - position_uni_clf_controller(states, positions):
+    - states: 3xN numpy array (of unicycle states, [x;y;theta])
+    - posistions: 3xN numpy array (of desired positons, [x_goal;y_goal])
+    - Retourne un 2xN array des controles d'entrée
 
 #### Single Integrator model VS Unicycle model
 
-Unicycle model represente le model actuel du robot. Sa commande de déplacement doit etre adapté a son gabarit. Il peut s'orienter en modifiant la vitesse de chacune de ses roues :
+Le modèle actuel du robot est représenté par l'unicycle model présenté ci-dessous. Sa commande de déplacement doit être adaptée a son gabarit. Il peut s'orienter en modifiant la vitesse de chacune de ses roues :
 ![Screenshot](assets/uni.png)
 
-A partir d'un Single-Integrator (SI) Model, il est possible de le convertir en Unicyle(UNI) Model a l'aide de fonction donné par la bibliothèque du Robotarium.
+A partir d'un Single-Integrator (SI) Model, il est possible de le convertir en Unicyle(UNI) Model à l'aide de fonctions donnés par la bibliothèque du Robotarium.
 ![Screenshot](assets/SItoUNI.png) 
 
 Ces fonctions sont : 
 
 
-Plus d'infomations sur les Single integrator et les unicyle model sur : https://www.youtube.com/watch?v=HY4pvDK28d4&list=PLezxjc7iVgzrcHytt6WL8r9qHggiFTdOt&index=3
+Plus d'infomations sur les single integrator et les unicyle model sur : https://www.youtube.com/watch?v=HY4pvDK28d4&list=PLezxjc7iVgzrcHytt6WL8r9qHggiFTdOt&index=3
 
             
 ### Barrier certificates
-- C'est le rayon de sécurité de chaque robot 
-On le crée avec : 
-si_barrier_cert = create_single_integrator_barrier_certificate()
+- C'est le rayon de sécurité de chaque robot, on le crée avec : 
+  - si_barrier_cert = create_single_integrator_barrier_certificate()
 
 ### Graphe
 Les robots communiquent entre eux grace aux graphes Laplaciens.
