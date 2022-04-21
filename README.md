@@ -1,14 +1,14 @@
 
 # PIR project
 
-Notre projet d'initiation a la recherche consiste à étudier le comportement des robots en essaim au travers plusieurs algorithmes. On y a déposé nos propres codes dans "rps/code_perso" 
+Notre projet d'initiation à la recherche consiste à étudier le comportement des robots en essaim à travers plusieurs algorithmes. On a déposé nos propres codes dans "rps/code_perso" 
 
 ## Etapes 
-### Determination du nbr de robot idéal
-On fait varier le nombre de robot avec une cible fixe
+### Determination du nombre de robots idéal
+Dans un premier temps, on fait varier le nombre de robot avec une cible fixe.
 
 ### Determination de l'algo idéal
-On fait varier aléatoirement la cible avec le meme nombre de robot.
+On fait varier aléatoirement la cible avec le même nombre de robot.
 
 
 
@@ -16,11 +16,11 @@ On fait varier aléatoirement la cible avec le meme nombre de robot.
 Voir "slicing" tableau python
 
 ## Tutoriel Simulateur
-Voici un explication syntetiques des differensnt modules utilisé dans le simulateur :
+Voici un explication synthétique des différents modules utilisés dans le simulateur :
 
 ### La base 
 #### Robotarium module
-Il y a la classe Robotarium dans [rps.robotarium] qui est le moteur meme du simulateur 
+Il y a la classe Robotarium dans [rps.robotarium] qui est le moteur même du simulateur 
 
 ### Liste des utilites 
 
