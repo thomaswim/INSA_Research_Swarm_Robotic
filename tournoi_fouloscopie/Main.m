@@ -14,9 +14,13 @@ addpath(genpath('utilities'));
 
 %% Set up Robotarium object
 
-N = 13;
-xi = [-0.45 -0.15 0.15 0.45 -0.45 -0.15 0.15 0.45 -0.45 -0.15 0.15 0.45 0.3];
-yi = [0.3 0.3 0.3 0.3 0 0 0 0 -0.3 -0.3 -0.3 -0.3 1] ;
+
+
+N=15;
+xi=[0 -0.1875 -0.0625 0.0625 0.1875 -0.25 -0.125 0 0.125 0.25 -0.1875 -0.0625 0.0625 0.1875 0];
+yi=[-0.25 -0.1875 -0.1875 -0.1875 -0.1875 0 0 0 0 0 0.1875 0.1875 0.1875 0.1875 0.25];
+
+
 ai = rand(1,N).*2*  pi - pi ;
  
 initial_conditions = [xi ; yi ; ai ] ;
@@ -74,12 +78,12 @@ data_Y = nan(expectedDuration,N);
 data_attack = nan(expectedDuration,N);
 data_detect = nan(expectedDuration,N);
 
-
+all_on_target = 0;
 
 %% START OF SIMULATION
 iteration = 0 ;
 
-while target_energy>0 && total_time<900
+while all_on_target < N && total_time<900 
     
    % Update iteration
         iteration = iteration + 1 ;
@@ -146,15 +150,16 @@ while target_energy>0 && total_time<900
                     end                   
   
             % Update the states of the robot
-                allRobots{i}.update(INFO) ;
+                allRobots{i}.update(INFO);
         end 
 
-    
+    all_on_target = 0;
         % Control LEDS
         for i=1:N
             % Green light when target has been detected
             if (allRobots{i}.cible_detected==1)
                 r.set_right_leds(i , [0 ; 255 ; 0]);
+                all_on_target = all_on_target + 1;
             end
 
             % Red light when target is attacked
@@ -216,16 +221,16 @@ while target_energy>0 && total_time<900
 
 
     % Send the previously set velocities to the agents.  This function must be called!
+    
         r.step();   
     
     % Display
-        target_caption.String = sprintf('Energie de la cible %0.1f%%', round(10.*target_energy)/10);
         time_caption.String = sprintf('Temps écoulé : %d s', round(iteration*r.time_step));
     
 end
 
 % Resultat
-    disp(['Temps total pour détruire la cible : ' num2str(round(iteration*r.time_step)) ' secondes'])
+    disp(['Temps total pour trouver la cible : ' num2str(round(iteration*r.time_step)) ' secondes'])
 
     
 % Données finales
