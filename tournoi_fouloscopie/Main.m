@@ -41,14 +41,14 @@ x_target = -0.4;
 y_target=0.4;
     
 %% VARIABLES
-target_energy = 100; % Experiment ends when target energy is down to 0
+
 
 target_detected = zeros(1,N); % Which robots have detected the target
 target_attacked = zeros(1,N); % Which robots are attacking the taget
 
 %% AFFICHAGE
 d = plot(x_target,y_target,'ro');
-target_caption = text(-1.5, -1.1, sprintf('Energie de la cible : %0.1f%%', target_energy), 'FontSize', 15, 'FontWeight', 'bold', 'Color','r');
+target_caption = text(-1.5, -1.1, sprintf('', target_energy), 'FontSize', 15, 'FontWeight', 'bold', 'Color','r');
 time_caption = text(-1.5, -1.2, sprintf('Temps écoulé : 0 s'), 'FontSize', 14, 'FontWeight', 'bold', 'Color','r');
 uistack(target_caption, 'top'); 
 uistack(time_caption, 'top'); 
