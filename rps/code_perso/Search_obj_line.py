@@ -108,7 +108,7 @@ for kk in range(0,N)]
 ########################
 
 xp=-1.5
-yp=1.5
+yp=0.8
 v=0
 
 
@@ -127,7 +127,7 @@ for t in range(iterations):
 	# approximately 0.033s
 	x = r.get_poses()
 	xi = uni_to_si_states(x)
-
+	
 	# Update Plot Handles
 	for q in range(N):
 		follower_labels[q].set_position([xi[0,q],xi[1,q]+0.15])
@@ -152,26 +152,32 @@ for t in range(iterations):
 
 
 
-		if (waypoint_check[i] == 0) and Obj_find ==0:
+		if (waypoint_check[i] == 0):
 			if v==0 : 
+				print("Robot ",i, "arrive a dest verticale = 0")
 				xp = xp + 0.1
 				waypoint[[0],[1]] = xp
 				waypoint[[0],[2]] = xp+.1
 				waypoint[[0],[3]] = xp+.2
 				waypoint[[0],[0]] = xp+.3
-				waypoint[[1],[i]] = yp
-				if xp >= 0.8 : 
+				print(waypoint[[0],[1]])
+				if x[2,2] >= 0.8 : 
 					v=1
+					print("coucou 2")
 			if v==1:
+				print("Robot ",i, "arrive a dest verticale = 1")
 				yp = yp + 0.1
 				waypoint[[1],[1]] = yp
 				waypoint[[1],[2]] = yp+.1
 				waypoint[[1],[3]] = yp+.2
 				waypoint[[1],[0]] = yp+.3
 				waypoint[[0],[i]] = xp
-				if v >=0.8 :
+				print("coucou 3")
+				if x[2,2]==40:
+					print("coucou 4")
 					v=0
-			 
+			
+
 
 			##on etabli un nouveau waypoint
 			##dxi[:,[i]] = leader_controller(x[:2,[0]], waypoint[:,[i]])

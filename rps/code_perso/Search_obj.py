@@ -20,7 +20,7 @@ from rps.utilities.controllers import *
 import numpy as np
 
 # Experiment Constants
-iterations = 3500 #Run the simulation/experiment for 5000 steps (5000*0.033 ~= 2min 45sec)
+iterations = 5000 #Run the simulation/experiment for 5000 steps (5000*0.033 ~= 2min 45sec)
 N=1 #Number of robots to use, this must stay 4 unless the Laplacian is changed.
 
 Objectif = np.array([[-0.5],[0.8]])
