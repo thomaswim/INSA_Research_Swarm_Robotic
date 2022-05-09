@@ -21,7 +21,7 @@ import numpy as np
 
 # Experiment Constants
 iterations = 5000 #Run the simulation/experiment for 5000 steps (5000*0.033 ~= 2min 45sec)
-N=6 #Number of robots to use, this must stay 4 unless the Laplacian is changed.
+N=13 #Number of robots to use, this must stay 4 unless the Laplacian is changed.
 
 Objectif = np.array([[-0.4],[0.4]])
 close_enough = 0.1 ; #a quelle distance minimum du waypoint doit etre le follower afin de valider son étape
@@ -52,7 +52,7 @@ desired_distance = 0.3
 
 #On pose les condiitons initiales des robots  
 # AVEC UN ROBOT initial_conditions = np.array([[-1.5],[-0.6],[0]]) 
-initial_conditions = np.array([[-1.5, -1.3, -1.1,-0.9,-0.7,-0.5],[-.5, -.5, -.5, -.5,-.5,-.5],[0, 0, 0, 0, 0, 0]])
+initial_conditions = np.array([[-1.5, -1.3, -1.1,-0.9,-0.7,-0.5, -0.3, -0.1, 0.1 , 0.3,0.5,0.7,0.9],[-.5, -.5, -.5, -.5,-.5,-.5,-.5,-.5,-.5,-.5,-.5,-.5,-.5],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]])
 #On initialise la classe robotarium 
 r = robotarium.Robotarium(number_of_robots=N, show_figure=True, initial_conditions=initial_conditions, sim_in_real_time=False)
 #SI to UNI mapping
@@ -158,6 +158,14 @@ for t in range(iterations):
 				waypoint[[0],[3]] = xp+.3
 				waypoint[[0],[4]] = xp+.4
 				waypoint[[0],[5]] = xp+.5
+				waypoint[[0],[6]] = xp+.6
+				waypoint[[0],[7]] = xp+.7
+				waypoint[[0],[8]] = xp+.8
+				waypoint[[0],[9]] = xp+.9
+				waypoint[[0],[10]] = xp+1.0
+				waypoint[[0],[11]] = xp+1.1
+				waypoint[[0],[12]] = xp+1.2
+
 				v=1
 			if v==1 : 
 				xp=xp
@@ -169,6 +177,13 @@ for t in range(iterations):
 				waypoint[[1],[3]] = yp+.3
 				waypoint[[1],[4]] = yp+.4
 				waypoint[[1],[5]] = yp+.5
+				waypoint[[1],[6]] = yp+.6
+				waypoint[[1],[7]] = yp+.7
+				waypoint[[1],[8]] = yp+.8
+				waypoint[[1],[9]] = yp+.9
+				waypoint[[1],[10]] = yp+1.0
+				waypoint[[1],[11]] = yp+1.1
+				waypoint[[1],[12]] = yp+1.2
 
 
 

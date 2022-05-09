@@ -23,7 +23,7 @@ import numpy as np
 iterations = 5000 #Run the simulation/experiment for 5000 steps (5000*0.033 ~= 2min 45sec)
 N=4 #Number of robots to use, this must stay 4 unless the Laplacian is changed.
 
-Objectif = np.array([[0.5],[0.8]])
+Objectif = np.array([[-0.4],[0.4]])
 close_enough = 0.1 ; #a quelle distance minimum du waypoint doit etre le follower afin de valider son étape
 
 ####Creation du Laplacien####
