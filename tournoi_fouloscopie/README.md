@@ -10,7 +10,8 @@
 Soit 110cm², approximons à un cercle de rayon de 11cm.
 Distance minimale entre deux centres de robots est de 15 cm, soit 4 cm de débattement.
 
-## Positions initiales
+## Positions initiales 
+Pour les positions initiales ci-dessous, le test en réel ne foncitonne pas car les robots ne parviennent pas à se mettre dans la configuration initiale. Nous décidons de les changer en écartant de manière okys conséquente les robots.
 
 Pour 5 robots : 
 
@@ -41,4 +42,36 @@ Pour 15 robots :
 
 xi=[0 -0.1875 -0.0625 0.0625 0.1875 -0.25 -0.125 0 0.125 0.25 -0.1875 -0.0625 0.0625 0.1875 0];
 yi=[-0.25 -0.1875 -0.1875 -0.1875 -0.1875 0 0 0 0 0 0.1875 0.1875 0.1875 0.1875 0.25];
+
+ ### New configuration
+ 
+Pour 5 robots : 
+
+xi=[-0.1625 0.1625 -0.225 0 0.225];
+yi=[-0.35 -0.35 0.35 0.35 0.35];
+
+Pour 7 robots : 
+
+xi=[-0.1625 0.1625 -0.225 0 0.225 -0.1625 0.1625];
+yi=[-0.225 -0.225 0 0 0 0.225 0.225];
+
+Pour 8 robots : 
+
+xi=[-0.2875 -0.1625 0.1625 0.2875 -0.2875 -0.1625 0.1625 0.2875];
+yi=[-0.35 -0.35 -0.35 -0.35  0.35 0.35 0.35 0.35];
+
+Pour 11 robots : 
+
+xi=[-0.2875 -0.1625 0.1625 0.2875 -0.225 0 0.225 -0.2875 -0.1625 0.1625 0.2875];
+yi=[-0.225 -0.225 -0.225 -0.225 0 0 0 0.225 0.225 0.225 0.225];
+
+Pour 13 robots : 
+
+xi=[-0.2875 -0.1625 0.1625 0.2875 -0.35 -0.225 0 0.225 0.35 -0.2875 -0.1625 0.1625 0.2875];
+yi=[-0.225 -0.225 -0.225 -0.225 0 0 0 0 0 0.225 0.225 0.225 0.225];
+
+Pour 15 robots : 
+
+xi=[-0.35 -0.2875 -0.1625 0.1625 0.2875 -0.35 -0.225 0 0.225 0.35 -0.2875 -0.1625 0.1625 0.2875 0.35];
+yi=[-0.35 -0.2875 -0.2875 -0.2875 -0.2875 0 0 0 0 0 0.2875 0.2875 0.2875 0.2875 0.35];
 
