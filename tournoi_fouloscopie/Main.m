@@ -14,9 +14,9 @@ addpath(genpath('utilities'));
 
 %% Set up Robotarium object
 
-N = 13;
-xi = [-0.45 -0.15 0.15 0.45 -0.45 -0.15 0.15 0.45 -0.45 -0.15 0.15 0.45 0.3];
-yi = [0.3 0.3 0.3 0.3 0 0 0 0 -0.3 -0.3 -0.3 -0.3 1] ;
+N = 6;
+xi = [-0.1625 0.1625 -0.225 0.225 -0.1625 0.1625];
+yi = [-0.225 -0.225 0 0 0.225 0.225] ;
 ai = rand(1,N).*2*  pi - pi ;
  
 initial_conditions = [xi ; yi ; ai ] ;
@@ -44,9 +44,8 @@ target_attacked = zeros(1,N); % Which robots are attacking the taget
 
 %% AFFICHAGE
 d = plot(x_target,y_target,'ro');
-target_caption = text(-1.5, -1.1, sprintf('Energie de la cible : %0.1f%%', target_energy), 'FontSize', 15, 'FontWeight', 'bold', 'Color','r');
 time_caption = text(-1.5, -1.2, sprintf('Temps écoulé : 0 s'), 'FontSize', 14, 'FontWeight', 'bold', 'Color','r');
-uistack(target_caption, 'top'); 
+robot_number = text(-1.5, -1.1, sprintf('Robots ayant trouvé la cible : 0'), 'FontSize', 14, 'FontWeight', 'bold', 'Color','r');
 uistack(time_caption, 'top'); 
 uistack(d, 'bottom');
 
@@ -75,11 +74,11 @@ data_attack = nan(expectedDuration,N);
 data_detect = nan(expectedDuration,N);
 
 
-
+all_found_target = 0; 
 %% START OF SIMULATION
 iteration = 0 ;
 
-while target_energy>0 && total_time<900
+while all_found_target < N && total_time<900
     
    % Update iteration
         iteration = iteration + 1 ;
@@ -149,14 +148,15 @@ while target_energy>0 && total_time<900
                 allRobots{i}.update(INFO) ;
         end 
 
-    
+    all_found_target =0;
         % Control LEDS
         for i=1:N
             % Green light when target has been detected
             if (allRobots{i}.cible_detected==1)
                 r.set_right_leds(i , [0 ; 255 ; 0]);
+                all_found_target = all_found_target + 1;
             end
-
+            
             % Red light when target is attacked
             if (allRobots{i}.cible_attacked==1)
                 r.set_left_leds(i , [255 ; 0 ; 0]);
@@ -166,12 +166,6 @@ while target_energy>0 && total_time<900
         end
 
     
-    % Update target energy
-        for i=1:N
-            if (allRobots{i}.cible_attacked==1)
-                target_energy = max(target_energy - ATTACK_STRENGTH , 0 );
-            end
-        end
 
 
     %% Update robots speed and position  
@@ -219,13 +213,13 @@ while target_energy>0 && total_time<900
         r.step();   
     
     % Display
-        target_caption.String = sprintf('Energie de la cible %0.1f%%', round(10.*target_energy)/10);
         time_caption.String = sprintf('Temps écoulé : %d s', round(iteration*r.time_step));
+        robot_number.String = sprintf('Robots ayant trouvé la cible : %d',all_found_target); 
     
 end
 
 % Resultat
-    disp(['Temps total pour détruire la cible : ' num2str(round(iteration*r.time_step)) ' secondes'])
+    disp(['Temps total pour converger vers la cible : ' num2str(round(iteration*r.time_step)) ' secondes'])
 
     
 % Données finales
