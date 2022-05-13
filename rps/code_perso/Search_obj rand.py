@@ -14,8 +14,8 @@ from rps.utilities.transformations import *
 from rps.utilities.graph import *
 from rps.utilities.barrier_certificates import *
 from rps.utilities.misc import *
-import time
 from rps.utilities.controllers import *
+import time
 
 #Other Imports
 import numpy as np
@@ -24,7 +24,8 @@ import numpy as np
 iterations = 5000 #Run the simulation/experiment for 5000 steps (5000*0.033 ~= 2min 45sec)
 N=4 #Number of robots to use, this must stay 4 unless the Laplacian is changed.
 
-Objectif = np.array([[-0.4],[0.4]])
+Objectif = np.array([[random.uniform(-1, 1)],[random.uniform(-1, 1)]])
+print("Coordonnées de l'objectif :", Objectif)
 close_enough = 0.1 ; #a quelle distance minimum du waypoint doit etre le follower afin de valider son étape
 
 ####Creation du Laplacien####
@@ -186,9 +187,9 @@ for t in range(iterations):
 		
 		if np.linalg.norm(x[:2,[i]]-Objectif) < desired_distance and Obj_find ==0:
 			##print("FIND IT")
+			Obj_find = 1
 			temps=time.time() - temps
 			print("TEMPS : ", temps)
-			Obj_find = 1
 			dxi[:,[i]] = [[0],[0]]
 			for j in neighbors:
 				waypoint[:,[j]] = xi[:,[i]]
