@@ -25,7 +25,6 @@ iterations = 5000 #Run the simulation/experiment for 5000 steps (5000*0.033 ~= 2
 N=4 #Number of robots to use, this must stay 4 unless the Laplacian is changed.
 
 Objectif = np.array([[random.uniform(-1, 1)],[random.uniform(-1, 1)]])
-print("Coordonnées de l'objectif :", Objectif)
 close_enough = 0.1 ; #a quelle distance minimum du waypoint doit etre le follower afin de valider son étape
 
 ####Creation du Laplacien####
